@@ -4,11 +4,18 @@ import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
+import {makeStyles} from '@mui/styles'
 import axios from 'axios';
 const sign = require('jwt-encode');
 const secret = 'secret';
+const useStyle = makeStyles({
+    btn:{
+        fontSize : 60
+    }
+});
 
 class Login extends Component {
+    
     state = 
     {
         login : {
@@ -53,8 +60,9 @@ class Login extends Component {
             if(status!==201) window.alert(data.msg)
             else{
                 const jwt = sign(data,secret);
-                localStorage.setItem("user",jwt);   
-                this.props.history.push('/patientInfo')
+                localStorage.setItem("user",jwt);
+                console.log(data);   
+                //this.props.history.push('/patientInfo')
             }
             //console.log(data)
         })().catch(e=>console.log(e));
@@ -68,8 +76,9 @@ class Login extends Component {
             if(status===201)
             {
                 const jwt = sign(data,secret);
-                localStorage.setItem("user",jwt);   
-                this.props.history.push('/patientInfo')
+                localStorage.setItem("user",jwt); 
+                this.handleResetRegister();  
+                //this.props.history.push('/patientInfo')
             }
             //const jwt = sign(data,secret);
             //localStorage.setItem("user",jwt);   
@@ -97,9 +106,26 @@ class Login extends Component {
     }
 
     render() { 
-        const{login, register} = this.state;
+        //const{login, register} = this.state;
+        //const classes = useStyle();
         return (
-            <Box
+            <div>
+                <Button variant='contained'></Button>
+            </div>
+        );
+    }
+}
+ 
+export default Login;
+
+// <div>
+//                 <Input>hello</Input>
+//                 <Button variant="contained">Contained</Button>
+//                 <Button variant="outlined" color="warning">Contained</Button>
+//                 <Card variant="elevation">example</Card>
+//             </div>
+/* 
+<Box
             justifyContent="center"
             alignItems="center"
             >
@@ -170,16 +196,4 @@ class Login extends Component {
                 </Card>
             </Stack>
             
-            </Box>
-        );
-    }
-}
- 
-export default Login;
-
-// <div>
-//                 <Input>hello</Input>
-//                 <Button variant="contained">Contained</Button>
-//                 <Button variant="outlined" color="warning">Contained</Button>
-//                 <Card variant="elevation">example</Card>
-//             </div>
+            </Box> */
