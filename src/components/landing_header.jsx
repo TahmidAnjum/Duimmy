@@ -5,7 +5,7 @@ import SortIcon from '@mui/icons-material/Sort';
 //import img from '../images/7850954.jpg'
 const useStyles = makeStyles((theme)=>({
     appbar:{
-        flexGrow : '1'
+        flexGrow : '2'
     },
     
     icon :{
